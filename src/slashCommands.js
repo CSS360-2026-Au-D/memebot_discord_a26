@@ -4,6 +4,10 @@ const commands = [
     new SlashCommandBuilder()
     .setName("badger-den")
     .setDescription("Open the Badger Den")
+    .toJSON(),
+     new SlashCommandBuilder()
+    .setName("blackjack")
+    .setDescription("Play a game of blackjack against the bot")
     .toJSON()
 ];
 const rest = new REST({version:"10"}).setToken(process.env.TOKEN);
