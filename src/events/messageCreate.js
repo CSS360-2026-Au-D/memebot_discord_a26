@@ -22,7 +22,7 @@ const getUsersReport = async (authorId) => {
   // only list the first 20 so the reply stays under discord's 2000 char limit
   const userList = users
     .slice(0, 20)
-    .map((u) => `• ${userMention(u.user_id)} - coins: ${u.coins}, `)
+    .map((u) => `• ${userMention(u.user_id)} - coins: ${u.coins}, Has checked in: ${u.dailyCheckin}`)
     .join("\n");
 
   return {
