@@ -1,4 +1,4 @@
-# Gracous Badger
+# Gracous Badger v1.0
 
 > Discord bot Gracious Badger is a card game bot that allows for single and multiplayer games of Poker and Blackjack to be played in discord.
 
