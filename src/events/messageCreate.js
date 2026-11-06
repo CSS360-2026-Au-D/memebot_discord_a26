@@ -1,16 +1,36 @@
 import { userMention } from "discord.js";
 import { loadDB } from "../helpers/manDataBase";
+import { Deck } from '../games/cards/Deck.js';
 
-// type !testwelcome to test bot functionality
-// type !checkusers to check that users are being saved to the database
 const event = {
-  // checks every message made in discord server general chat(general is specfied in .env file)
   name: "messageCreate",
   async execute(message, client) {
-    if (message.author.bot) return; // prevent infinite loop
-    const content = message.content.trim();
-    if (content === "!testwelcome") client.emit("guildMemberAdd", message.member);
-    if (content === "!checkusers") await message.reply(await getUsersReport(message.author.id));
+    if (message.author.bot) return; // prevent infinite loop 
+    if (message.content.at(0) !== "!") return; // not a command 
+
+    switch (message.content.trim()) {
+      case "!testwelcome":
+        client.emit("guildMemberAdd", message.member);
+        break;
+      case "!checkusers":
+        await message.reply(await getUsersReport(message.author.id));
+        break;
+      case "!testdraw":{
+        const newDeck = new Deck();
+        newDeck.shuffle();
+        let messReply = `Creates a deck of size ${newDeck.size}, shuffles it\n`;
+        for(let i=0; i<newDeck.capacity; ++i){
+          const card = newDeck.draw();
+          messReply += `${card}\n`;
+        }
+        message.reply(messReply);
+        break;
+        // old build code from package.json 
+        //"build": "rm -rf build && esbuild src/*.js src/**/*.js --platform=node --format=cjs  --outdir=build --outbase=src",
+      }
+      default:
+        message.reply("Not a reconized command");
+    }
   },
 };
 
