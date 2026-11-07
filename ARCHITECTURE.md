@@ -1,6 +1,6 @@
 # Architecture
 
-This document describes the main components of the poker application and how they interact. Each section includes a short explanation and a diagram of the relevant design.
+This document describes the main components of the Gracious Badger bot application and how they interact. Each section includes a short explanation and a diagram of the relevant design.
 
 ## Contents
 
